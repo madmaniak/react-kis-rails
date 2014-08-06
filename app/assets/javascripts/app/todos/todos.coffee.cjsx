@@ -1,4 +1,4 @@
-@Todoapp = React.createClass
+@Todos = React.createClass
 
   render: ->
     <section id="todoapp">

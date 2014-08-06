@@ -2,6 +2,6 @@
 
   render: ->
     <section>
-      <Todoapp />
+      <Todos />
       <Footer />
     </section>
