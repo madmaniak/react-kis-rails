@@ -4,9 +4,9 @@ class SerializationsController < ApplicationController
     @path = params[:path].split('/')
     if @path.size.even?
       id = @path.pop
-      render json: serializer.send(:show, view_context, id), serializer: serializer
+      render json: serializer.send(:show, params, id), serializer: serializer
     else
-      render json: serializer.send(:index, view_context), each_serializer: serializer
+      render json: serializer.send(:index, params), each_serializer: serializer, root: @name
     end
   rescue NameError
     raise ActionController::RoutingError.new('Not Found')
@@ -17,7 +17,8 @@ class SerializationsController < ApplicationController
   def serializer
     @serializer ||= (
       path = @path
-      path[-1] = path[-1].singularize + "_serializer"
+      @name = path[-1]
+      path[-1] = @name.singularize + "_serializer"
       Kernel.const_get path.join.camelize
     )
   end
