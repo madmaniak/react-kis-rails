@@ -2,5 +2,5 @@
 
   render: ->
     <ul id="todo-list">
-      <Item />
+      { <Item item={item} /> for item in @props.todos }
     </ul>

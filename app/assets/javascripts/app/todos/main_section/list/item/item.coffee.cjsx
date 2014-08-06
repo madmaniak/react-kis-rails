@@ -1,11 +1,11 @@
 @Item = React.createClass
 
   render: ->
-    <li className="completed">
+    <li className={ "completed" if @props.item.complete }>
       <div className="view">
-        <input className="toggle" type="checkbox" checked />
-        <label>Create a TodoMVC template</label>
+        <input className="toggle" type="checkbox" checked={@props.item.complete} />
+        <label>{@props.item.note}</label>
         <button className="destroy"></button>
       </div>
-      <input className="edit" value="Create a TodoMVC template" />
+      <input className="edit" value={@props.item.note} />
     </li>
