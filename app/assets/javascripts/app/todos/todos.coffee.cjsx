@@ -5,13 +5,13 @@
   url: 'api/todos'
 
   actions:
-    new_task: (state, params) ->
-      state.todos.push
+    new_task: (params) ->
+      @todos.push
         note: params.note
         complete: false
 
-    task_toggle: (state, params) ->
-      task = _.find(state.todos, id: params.id)
+    task_toggle: (params) ->
+      task = _.find(@todos, id: params.id)
       task.complete = !task.complete
 
   getInitialState: ->

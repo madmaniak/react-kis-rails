@@ -8,7 +8,7 @@
   _perform: (event) ->
     (params) =>
       state = _.cloneDeep @state
-      @actions[event].call @, state, params
+      @actions[event].call state, params
       @_latencyCompenstation "#{@url}/#{event}", params, state
 
   _latencyCompenstation: (action, data, newState) ->
