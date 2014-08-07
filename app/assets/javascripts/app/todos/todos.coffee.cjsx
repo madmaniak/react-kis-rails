@@ -19,7 +19,7 @@
     </section>
 
   _addNewTask: (note) ->
-    @setState
+    @_latencyCompenstation 'api/todos/add_new_task', note,
       todos: @state.todos.concat
         note: note
         complete: false
@@ -27,3 +27,12 @@
   _completeNumber: ->
     @__completeNumber ||=
       _.filter(@state.todos, (t) -> t.complete).length
+
+  _latencyCompenstation: (action, data, newState) ->
+    oldState = @state
+    @setState newState
+
+    $.post action, data, (response) =>
+      @setState response
+    .fail =>
+      @replaceState oldState
