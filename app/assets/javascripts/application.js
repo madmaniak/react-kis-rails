@@ -1,5 +1,0 @@
-//= require jquery
-//= require jquery_ujs
-//= require_tree ./app
-
-React.renderComponent(App(null), document.body)
