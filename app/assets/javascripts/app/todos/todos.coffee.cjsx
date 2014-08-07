@@ -22,15 +22,16 @@
     $.get @url, (result) => @setState(result)
 
   render: ->
+    __completeNumber = @_completeNumber()
+
     <section id="todoapp">
       <Header />
       <MainSection todos={@state.todos} />
       <MainSectionFooter
-        complete={@_completeNumber()}
-        left={@state.todos.length - @_completeNumber()}
+        complete={__completeNumber}
+        left={@state.todos.length - __completeNumber}
       />
     </section>
 
   _completeNumber: ->
-    @__completeNumber ||=
-      _.filter(@state.todos, 'complete').length
+    _.filter(@state.todos, 'complete').length
