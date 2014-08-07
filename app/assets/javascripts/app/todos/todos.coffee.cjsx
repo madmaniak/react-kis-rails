@@ -19,7 +19,7 @@
     </section>
 
   _addNewTask: (note) ->
-    @_latencyCompenstation 'api/todos/add_new_task', note,
+    @_latencyCompenstation 'api/todos/add_new_task', { note },
       todos: @state.todos.concat
         note: note
         complete: false
