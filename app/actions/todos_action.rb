@@ -1,6 +1,6 @@
 class TodosAction < ApplicationAction
 
-  def add_new_task
+  def new_task
     Task.create do |task|
       task.note = params[:note]
       task.complete = false

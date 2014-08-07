@@ -22,5 +22,5 @@
       @_save()
 
   _save: ->
-    Dispatcher.trigger 'new-task', @state.value
+    Dispatcher.trigger 'new_task', note: @state.value
     @setState value: ''

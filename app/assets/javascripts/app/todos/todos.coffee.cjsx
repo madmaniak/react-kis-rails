@@ -1,12 +1,21 @@
 @Todos = React.createClass
 
+  mixins: [ActionsHandler]
+
+  url: 'api/todos'
+
+  actions:
+    new_task: (params) ->
+      todos: @state.todos.concat
+        note: params.note
+        complete: false
+
   getInitialState: ->
     todos: []
 
   componentDidMount: ->
-    _.extend(@, Events)
-    @listenTo Dispatcher, 'new-task', @_addNewTask
-    $.get 'api/todos', (result) => @setState(result)
+    @listenForEvents()
+    $.get @url, (result) => @setState(result)
 
   render: ->
     <section id="todoapp">
@@ -18,21 +27,6 @@
       />
     </section>
 
-  _addNewTask: (note) ->
-    @_latencyCompenstation 'api/todos/add_new_task', { note },
-      todos: @state.todos.concat
-        note: note
-        complete: false
-
   _completeNumber: ->
     @__completeNumber ||=
       _.filter(@state.todos, (t) -> t.complete).length
-
-  _latencyCompenstation: (action, data, newState) ->
-    oldState = @state
-    @setState newState
-
-    $.post action, data, (response) =>
-      @setState response
-    .fail =>
-      @replaceState oldState
