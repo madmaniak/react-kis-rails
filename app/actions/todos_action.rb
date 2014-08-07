@@ -9,4 +9,12 @@ class TodosAction < ApplicationAction
     { json: TodoSerializer.index(params), each_serializer: TodoSerializer, root: 'todos' }
   end
 
+  def task_toggle
+    task = Task.find_by id: params[:id]
+    task.complete = !task.complete
+    task.save
+
+    { json: TodoSerializer.index(params), each_serializer: TodoSerializer, root: 'todos' }
+  end
+
 end

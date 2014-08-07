@@ -5,10 +5,14 @@
   url: 'api/todos'
 
   actions:
-    new_task: (params) ->
-      todos: @state.todos.concat
+    new_task: (state, params) ->
+      state.todos.push
         note: params.note
         complete: false
+
+    task_toggle: (state, params) ->
+      task = _.find(state.todos, id: params.id)
+      task.complete = !task.complete
 
   getInitialState: ->
     todos: []
@@ -29,4 +33,4 @@
 
   _completeNumber: ->
     @__completeNumber ||=
-      _.filter(@state.todos, (t) -> t.complete).length
+      _.filter(@state.todos, 'complete').length
