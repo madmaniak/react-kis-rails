@@ -14,5 +14,4 @@
           <a href="#/completed">Completed</a>
         </li>
       </ul>
-      <button id="clear-completed">Clear completed ({@props.complete})</button>
     </footer>
