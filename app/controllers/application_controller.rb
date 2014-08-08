@@ -8,10 +8,4 @@ class ApplicationController < ActionController::Base
   def index
   end
 
-  private
-
-  def get_class path_array, type = "type"
-    Kernel.const_get (path_array.join('/') + "_#{type}").camelize
-  end
-
 end

@@ -1,17 +1,16 @@
-class ActionsController < ApplicationController
+class ActionsController < SerializationsController
 
   def router
     perform_action
     path = params[:url].gsub(/^api\//, '')
-    redirect_to controller: 'serializations', action: 'router', path: path
+    split_path(path)
+    super
   end
 
   private
 
   def perform_action
-    @path = params[:path].split('/')
-    method = @path.pop
-    action.new(params, session).send method
+    action.new(params, session).send @method
   end
 
   def action
