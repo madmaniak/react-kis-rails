@@ -17,9 +17,9 @@ class SerializationsController < ApplicationController
   def serializer
     @serializer ||= (
       path = @path
-      @name = path[-1]
-      path[-1] = @name.singularize + "_serializer"
-      Kernel.const_get path.join.camelize
+      @name = path.pop
+      path << @name.singularize
+      get_class path, 'serializer'
     )
   end
 

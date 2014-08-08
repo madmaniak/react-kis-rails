@@ -15,7 +15,7 @@ class ActionsController < ApplicationController
   end
 
   def action
-    Kernel.const_get (@path.join('/') + "_action").camelize
+    get_class @path, 'action'
   end
 
 end
