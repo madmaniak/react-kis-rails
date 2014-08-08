@@ -9,7 +9,7 @@ bundle
 rails s
 ```
 
-Read commits.
+Checkout [localhost:3000](http://localhost:3000). Read commits.
 
 ## Assumptions
 
