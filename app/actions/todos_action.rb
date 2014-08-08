@@ -29,4 +29,10 @@ class TodosAction < ApplicationAction
     { json: TodoSerializer.index(params), each_serializer: TodoSerializer, root: 'todos' }
   end
 
+  def delete_task
+    Task.find_by(id: params[:id]).delete
+
+    { json: TodoSerializer.index(params), each_serializer: TodoSerializer, root: 'todos' }
+  end
+
 end

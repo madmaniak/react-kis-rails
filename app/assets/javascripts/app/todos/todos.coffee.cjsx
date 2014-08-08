@@ -20,6 +20,9 @@
     restart_all_tasks: ->
       _.each @todos, (task) -> task.complete = false
 
+    delete_task: (params) ->
+      @todos.splice _.findIndex(@todos, id: params.id), 1
+
 
   getInitialState: ->
     todos: []
