@@ -5,6 +5,9 @@
     for event, method of @actions
       @listenTo Dispatcher, event, @_perform(event)
 
+    for event, method of @localActions
+      @listenTo Dispatcher, event, method
+
   _perform: (event) ->
     (params) =>
       state = _.cloneDeep @state

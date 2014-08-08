@@ -5,13 +5,22 @@
       <span id="todo-count"><strong>{@props.left}</strong> item left</span>
       <ul id="filters">
         <li>
-          <a className="selected" href="#/">All</a>
+          <a onClick={@_all} href="#/">All</a>
         </li>
         <li>
-          <a href="#/active">Active</a>
+          <a onClick={@_active} href="#/active">Active</a>
         </li>
         <li>
-          <a href="#/completed">Completed</a>
+          <a onClick={@_completed} href="#/completed">Completed</a>
         </li>
       </ul>
     </footer>
+
+  _all: ->
+    Dispatcher.trigger 'unfilter_tasks'
+
+  _active: ->
+    Dispatcher.trigger 'filter_active_tasks'
+
+  _completed: ->
+    Dispatcher.trigger 'filter_completed_tasks'
