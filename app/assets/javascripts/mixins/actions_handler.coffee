@@ -18,7 +18,7 @@
     oldState = @state
     @setState newState
 
-    $.post action, data, (response) =>
+    $.post action, _.merge(data, url: @url), (response) =>
       @setState response
     .fail =>
       @replaceState oldState
