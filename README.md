@@ -46,3 +46,59 @@ Life cycle of __ASC__:
 
 - Don't map routings manually. Ask proper serializers or actions basing on get/post and url.
 - Each __ASC__ has it's own Serializer and Actions class.
+
+## Demo
+
+Item triggers __delete_task__ on button click.
+
+```coffeescript
+@Item = React.createClass
+
+  render: ->
+    <label>{@props.item.note}</label>
+     <button
+       className="destroy"
+       onClick={@_onClick}
+     ></button>
+
+  _onClick: (e) ->
+    Dispatcher.trigger 'delete_task', id: @props.item.id
+```
+
+Essential part of __ASC__:
+
+```coffeescript
+@Todos = React.createClass
+
+  mixins: [ActionsHandler]
+
+  url: 'api/todos'
+
+  actions:
+  
+    # handle delete_task action here:
+    delete_task: (params) ->
+      @todos.splice _.findIndex(@todos, id: params.id), 1
+
+  getInitialState: ->
+    todos: []
+
+  componentDidMount: ->
+    @listenForEvents()
+    $.get @url, (result) => @setState(result)
+
+  render: ->
+    <MainSection todos={@state.todos} /> # Item component is somewhere below MainSection 
+```
+
+Handle action on the backend:
+
+```ruby
+class TodosAction < ApplicationAction
+
+  def delete_task
+    Task.find_by(id: params[:id]).delete
+  end
+
+end
+```
