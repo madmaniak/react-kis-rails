@@ -12,7 +12,14 @@
 
     task_toggle: (params) ->
       task = _.find(@todos, id: params.id)
-      task.complete = !task.complete
+      task.complete = params.complete
+
+    complete_all_tasks: ->
+      _.each @todos, (task) -> task.complete = true
+
+    restart_all_tasks: ->
+      _.each @todos, (task) -> task.complete = false
+
 
   getInitialState: ->
     todos: []

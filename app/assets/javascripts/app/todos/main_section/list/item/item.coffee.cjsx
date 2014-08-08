@@ -16,4 +16,5 @@
     </li>
 
   _onChange: (e) ->
-    Dispatcher.trigger 'task_toggle', id: @props.item.id
+    item = @props.item
+    Dispatcher.trigger 'task_toggle', id: item.id, complete: !item.complete

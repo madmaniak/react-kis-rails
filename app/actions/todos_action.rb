@@ -11,8 +11,20 @@ class TodosAction < ApplicationAction
 
   def task_toggle
     task = Task.find_by id: params[:id]
-    task.complete = !task.complete
+    task.complete = params[:complete]
     task.save
+
+    { json: TodoSerializer.index(params), each_serializer: TodoSerializer, root: 'todos' }
+  end
+
+  def complete_all_tasks
+    Task.update_all complete: true
+
+    { json: TodoSerializer.index(params), each_serializer: TodoSerializer, root: 'todos' }
+  end
+
+  def restart_all_tasks
+    Task.update_all complete: false
 
     { json: TodoSerializer.index(params), each_serializer: TodoSerializer, root: 'todos' }
   end
