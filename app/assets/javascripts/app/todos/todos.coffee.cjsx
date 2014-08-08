@@ -18,7 +18,7 @@
       _.each @todos, (task) -> task.complete = true
 
     restart_all_tasks: ->
-      _.each @todos, (task) -> task.complete = false
+      _.each @todos, (task) -> task.complete = false; true
 
     delete_task: (params) ->
       @todos.splice _.findIndex(@todos, id: params.id), 1

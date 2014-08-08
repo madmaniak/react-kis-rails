@@ -14,7 +14,7 @@
       @actions[event].call state, params
       @_latencyCompenstation "#{@url}/#{event}", params, state
 
-  _latencyCompenstation: (action, data, newState) ->
+  _latencyCompenstation: (action, data = {}, newState) ->
     oldState = @state
     @setState newState
 
