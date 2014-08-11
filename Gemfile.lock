@@ -30,6 +30,8 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
+    browserify-rails (0.4.1)
+      sprockets (~> 2.0)
     builder (3.2.2)
     coderay (1.1.0)
     coffee-rails (4.0.1)
@@ -125,6 +127,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers
+  browserify-rails (~> 0.3)
   coffee-rails (~> 4.0.0)
   jquery-rails
   pry

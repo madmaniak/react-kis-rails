@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'active_model_serializers'
+gem "browserify-rails", "~> 0.3"
 gem 'pry'
 gem 'sprockets-coffee-react'
 

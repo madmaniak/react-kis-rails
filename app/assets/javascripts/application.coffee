@@ -1,3 +1,4 @@
+#= require node_dependencies
 #= require jquery
 #= require jquery_ujs
 #= require backbone.events
