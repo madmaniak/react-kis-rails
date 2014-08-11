@@ -6,6 +6,7 @@
 git clone git@github.com:madmaniak/react-kis-rails.git
 cd react-kis-rails
 bundle
+npm install
 rails s
 ```
 
